@@ -5,12 +5,12 @@
 - Step 3: Open the project in your favourite code editor and install all the dependencies by running the command `npm install` or `yarn install`.
 - Step 4: Create a file `.env.local` in the root directory of the project. This file should contain the following environment variables.
   - `PORT` - Port number on which the server will run.
-    - `EMAIL_TITLE` - Title of the email.
-    - `EMAIL_FROM` - Email address from which the email will be sent.
-    - `EMAIL_PASSWORD` - Password of the email address from which the email will be sent.
-    - `EMAIL_HOST` - Host of the email address from which the email will be sent.
-    - `EMAIL_PORT` - Port of the email address from which the email will be sent.
-    - `EMAIL_SECURE` - Whether the email address from which the email will be sent is secure or not.
+  - `EMAIL_TITLE` - Title of the email.
+  - `EMAIL_FROM` - Email address from which the email will be sent.
+  - `EMAIL_PASSWORD` - Password of the email address from which the email will be sent.
+  - `EMAIL_HOST` - Host from which the email will be sent.
+  - `EMAIL_PORT` - Port of the host from which the email will be sent.
+  - `EMAIL_SECURE` - Whether the host from which the email will be sent is SSl/TLS secured or not.
     - Example:
       ```
       PORT=5000
