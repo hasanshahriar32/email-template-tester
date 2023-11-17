@@ -11,7 +11,7 @@ module.exports.template = catchAsync(async (req, res) => {
   // create a container with html and css
 
   const navigation = require(`../utils/navigationBar`);
-  const Nav = navigation(templateName);
+  const Nav = navigation(req, templateName);
 
   res.send(mail + Nav);
 
