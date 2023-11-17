@@ -10,6 +10,10 @@ const template = (templateName) => {
         <form action="/template/send?type=${templateName}" method="POST">
         <label for="email">Email: </label>
         <input type="email" id="email" name="email" placeholder="Your email address.. ">
+        <br></br>
+        <label for="subject">Subject: </label>
+        <input type="text" id="subject" name="subject" placeholder="Your email subject ">
+        <br></br>
         <button type="submit">Send</button>
         </form>
 

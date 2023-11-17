@@ -7,7 +7,7 @@ const {
   email_secure,
 } = require("./utils/config.Env");
 
-async function mailSender(mailTo, mail) {
+async function mailSender(mailTo, subject, mail) {
   const nodemailer = require("nodemailer");
 
   const Title = email_title || "Paradox Tech";
@@ -29,16 +29,17 @@ async function mailSender(mailTo, mail) {
   // console.log(description);
   // Import NodeMailer (after npm install)
   // Async function enables allows handling of promises with await
-  subject = subject || "Welcome to Bangladeshi Software";
+  subject = subject || "Testing Email";
   description =
-    description ||
-    `<p>We are delighted to have you as a part of Bangladeshi Software. Our team is dedicated to providing high-quality software solutions tailored to meet your needs.</p>`;
-  recipient_name = recipient_name || "User";
-  recipient_email = recipient_email || [
+    mail ||
+    `<p>We are delighted to have you as a part of Paradox BD. Our team is dedicated to providing high-quality software solutions tailored to meet your needs.</p>`;
+
+  recipient_email = mailTo || [
     "bangladeshisoft@outlook.com",
     "paradoxtechbd@outlook.com",
     // 'admin@bangladeshisoftware.com',
   ];
+  console.log(recipient_email, mailTo);
   // First, define send settings by creating a new transporter:
   let transporter = nodemailer.createTransport({
     host: `${Host}`, // SMTP server address (usually mail.your-domain.com)
@@ -51,37 +52,12 @@ async function mailSender(mailTo, mail) {
     },
   });
 
-  const MainHtml = `
-    <div style="max-width: 600px; margin: 20px auto; padding: 20px; background-color: #fff; border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); font-family: 'Arial', sans-serif; line-height: 1.6; color: #333;">
-        <h1 style="color: #0F6CBD;">${subject}</h1>
-        <p>Dear ${recipient_name},</p>
-        ${description}
-        <br></br>
-        <hr></hr>
-        <u style="color: #3498db;">Bangladeshi Software Provide Innovative Software Solutions</u>
-        <p>Explore our services and learn more about what Bangladeshi Software can offer:</p>
-        <ul>
-            <li><a href="https://www.bangladeshisoftware.com" target="_blank" style="color: #3498db; text-decoration: none;">Visit our website</a></li>
-            <li>Contact Information:
-                <ul>
-                    <li>Email: admin@bangladeshisoftware.com</li>
-                    <li>Phone: <a href="https://api.whatsapp.com/send?phone=+8801719182586&text=Hi,%20is%20anyone%20available%20here?">+8801719182586</a></li>
-                </ul>
-            </li>
-        </ul>
-        <p>Feel free to reach out if you have any questions or if there's anything else we can assist you with.</p>
-        <p style="margin-bottom: 0;">Best regards,<br>
-            The Bangladeshi Software Team.</p>
-    </div>
-  `;
-  // Define and send message inside transporter.sendEmail() and await info about send from promise:
-  // try catch block
   try {
     let info = await transporter.sendMail({
       from: `${Title} <${From}>`,
       to: `${recipient_email}`,
       subject: `${subject}`,
-      html: MainHtml,
+      html: description,
     });
     console.log("Message sent: %s", info.messageId);
     return info;

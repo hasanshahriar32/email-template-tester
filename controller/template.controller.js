@@ -28,9 +28,11 @@ module.exports.template = catchAsync(async (req, res) => {
 
 module.exports.sendMail = catchAsync(async (req, res) => {
   const templateName = req.query.type;
+  const subject = req.body.subject;
   const mailTo = req.body.email;
   const file = require(`../templates/container/container`);
-  const mail = file(templateName);
-  const sendMail = await mailSender(mailTo, mail);
+  const mail = await file(templateName, subject);
+  const sendMail = await mailSender(mailTo, subject, mail);
+  // console.log(mailTo, subject, templateName);
   res.send(sendMail);
 });

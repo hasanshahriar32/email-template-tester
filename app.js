@@ -3,11 +3,13 @@ const cors = require("cors");
 const noRouteFound = require("./middleware/noRouteFound");
 const globalErrorHandler = require("./middleware/globalErrorHandler");
 const routes = require("./routes/routes.all");
+const bodyParser = require("body-parser");
 
 //making app :
 const app = express();
 app.use(express.json());
 app.use(cors());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 //test server
 app.get("/", (req, res) => {
