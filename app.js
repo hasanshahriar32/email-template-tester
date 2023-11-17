@@ -11,7 +11,21 @@ app.use(cors());
 
 //test server
 app.get("/", (req, res) => {
-  res.send("server is running");
+  // get the location according to the filesName inside folder
+  const folder = "templates/body";
+  const Urls = [];
+  const fs = require("fs");
+  const path = require("path");
+  const files = fs.readdirSync(folder);
+  files.forEach((file) => {
+    Urls.push(`http://localhost:5000/template?type=${file}`);
+  });
+  const modifiedUrlsHtml = Urls.map((url) => {
+    return `<a href="${url}">${url.split("=")[1].split(".")[0]}</a>`;
+  });
+  const html = modifiedUrlsHtml.join("<br/>");
+  res.send(html);
+  // res.send("server is running");
 });
 
 //route
