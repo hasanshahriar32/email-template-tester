@@ -1,28 +1,27 @@
-async function MailSender(
-  subject,
-  description,
-  recipient_name,
-  recipient_email,
-) {
-  const nodemailer = require('nodemailer');
-  const dotenv = require('dotenv');
-  const path = require('path');
+const {
+  email_title,
+  email_from,
+  email_password,
+  email_host,
+  email_port,
+  email_secure,
+} = require("./utils/config.Env");
 
-  //location
-  dotenv.config({ path: path.join(process.cwd(), '.env') });
+async function mailSender(mailTo, mail) {
+  const nodemailer = require("nodemailer");
 
-  const Title = process.env.EMAIL_TITLE || 'Bangladeshi Software';
-  const From = process.env.EMAIL_FROM || 'bangladeshisoft@outlook.com';
-  const Password = process.env.EMAIL_PASSWORD || 'bdSoft1!';
-  const Host = process.env.EMAIL_HOST || 'smtp-mail.outlook.com';
-  const PortType = process.env.EMAIL_PORT || '587';
-  const SecureVal = process.env.EMAIL_SECURE || 'false';
+  const Title = email_title || "Paradox Tech";
+  const From = email_from;
+  const Password = email_password;
+  const Host = email_host;
+  const PortType = email_port;
+  const SecureVal = email_secure;
 
   const Port = parseInt(`${PortType}`);
   let Secure;
-  if (SecureVal === 'true') {
+  if (SecureVal === "true") {
     Secure = true;
-  } else if (SecureVal === 'false') {
+  } else if (SecureVal === "false") {
     Secure = false;
   } else {
     Secure = SecureVal;
@@ -30,14 +29,14 @@ async function MailSender(
   // console.log(description);
   // Import NodeMailer (after npm install)
   // Async function enables allows handling of promises with await
-  subject = subject || 'Welcome to Bangladeshi Software';
+  subject = subject || "Welcome to Bangladeshi Software";
   description =
     description ||
     `<p>We are delighted to have you as a part of Bangladeshi Software. Our team is dedicated to providing high-quality software solutions tailored to meet your needs.</p>`;
-  recipient_name = recipient_name || 'User';
+  recipient_name = recipient_name || "User";
   recipient_email = recipient_email || [
-    'bangladeshisoft@outlook.com',
-    'paradoxtechbd@outlook.com',
+    "bangladeshisoft@outlook.com",
+    "paradoxtechbd@outlook.com",
     // 'admin@bangladeshisoftware.com',
   ];
   // First, define send settings by creating a new transporter:
@@ -84,7 +83,7 @@ async function MailSender(
       subject: `${subject}`,
       html: MainHtml,
     });
-    console.log('Message sent: %s', info.messageId);
+    console.log("Message sent: %s", info.messageId);
     return info;
   } catch (err) {
     console.log(err);
@@ -94,5 +93,5 @@ async function MailSender(
   // Random ID generated after successful send (optional)
 }
 
-module.exports = MailSender;
-// export default MailSender;
+module.exports = mailSender;
+// export default mailSender;
