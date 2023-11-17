@@ -1,4 +1,4 @@
-const MailSender = require('../mailSender');
+const MailSender = require("../../mailSender");
 
 const template = (verifyToken) => {
   const verificationLink = `${process.env.FrontendUrl}/onboarding?secret=${verifyToken}`;
@@ -23,14 +23,13 @@ const template = (verifyToken) => {
       </div>
       `;
 };
-// template ends here
 
-const registerUserMail = async (
+const updatePasswordMail = async (
+  subject,
   recipient_name,
   recipient_email,
-  verifyToken,
+  verifyToken
 ) => {
-  const subject = 'Onboarding to Restaurant Website: Verify your account.';
   const description = template(verifyToken);
   // console.log(description);
 
@@ -39,7 +38,7 @@ const registerUserMail = async (
       subject,
       description,
       recipient_name,
-      recipient_email,
+      recipient_email
     );
     return result;
   } catch (error) {
@@ -47,5 +46,5 @@ const registerUserMail = async (
     return error;
   }
 };
-// registerUserMail();
-module.exports = registerUserMail;
+// updatePasswordMail();
+module.exports = updatePasswordMail;
