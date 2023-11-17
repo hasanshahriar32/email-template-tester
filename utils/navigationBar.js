@@ -1,5 +1,4 @@
 const template = (req, templateName) => {
-  const baseUrl = req?.get("Referer") || "http://localhost:5000";
   return `
          <div style="max-width: 600px; margin: 20px auto; padding: 20px; background-color: #fff; border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); font-family: 'Arial', sans-serif; line-height: 1.6; color: #333;">
         
@@ -22,7 +21,7 @@ const template = (req, templateName) => {
         </form>
 
 
-        <a href="${baseUrl}">Back to home</a>
+        <a href="/">Back to home</a>
 
         </div>
  

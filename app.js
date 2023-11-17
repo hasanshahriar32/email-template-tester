@@ -20,11 +20,8 @@ app.get("/", (req, res) => {
   const path = require("path");
   const files = fs.readdirSync(folder);
 
-  // Get the base URL dynamically based on the Referer header
-  const baseUrl = req.get("Referer") || "http://localhost:5000";
-
   files.forEach((file) => {
-    Urls.push(`${baseUrl}/template?type=${file}`);
+    Urls.push(`/template?type=${file}`);
   });
 
   const modifiedUrlsHtml = Urls.map((url) => {
