@@ -11,7 +11,7 @@ app.use(express.json());
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-//test server
+// test server
 app.get("/", (req, res) => {
   // get the location according to the filesName inside folder
   const folder = "templates/body";
@@ -19,18 +19,23 @@ app.get("/", (req, res) => {
   const fs = require("fs");
   const path = require("path");
   const files = fs.readdirSync(folder);
+
+  // Get the base URL dynamically based on the Referer header
+  const baseUrl = req.get("Referer") || "http://localhost:5000";
+
   files.forEach((file) => {
-    Urls.push(`http://localhost:5000/template?type=${file}`);
+    Urls.push(`${baseUrl}/template?type=${file}`);
   });
+
   const modifiedUrlsHtml = Urls.map((url) => {
     return `<a href="${url}">${url.split("=")[1].split(".")[0]}</a>`;
   });
+
   const html = modifiedUrlsHtml.join("<br/>");
   res.send(html);
-  // res.send("server is running");
 });
 
-//route
+// route
 app.use("/", routes);
 
 // error handler middleware
