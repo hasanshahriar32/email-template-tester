@@ -7,7 +7,7 @@ const {
   email_secure,
 } = require("./utils/config.Env");
 
-async function mailSender(mailTo, subject, mail) {
+async function mailSender(name, mailTo, subject, mail) {
   const nodemailer = require("nodemailer");
 
   const Title = email_title || "Paradox Tech";

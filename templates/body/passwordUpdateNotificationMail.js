@@ -1,50 +1,27 @@
-const MailSender = require("../../mailSender");
-
-const template = (verifyToken) => {
+const template = (name, subject) => {
+  name = name || "User";
+  subject = subject || "Welcome to Paradox Tech BD";
+  const recipient_name = "User";
+  const verifyToken = 123456;
   const verificationLink = `${process.env.FrontendUrl}/onboarding?secret=${verifyToken}`;
   return `
-      <div style="max-width: 600px; margin: 20px auto; background-color: #ffffff;">
+        <h1 style="color: #0F6CBD;">${subject}</h1>
+        <p>Dear ${recipient_name},</p>
         <p style="color: #666; margin-bottom: 20px;">
-          Thank you for creating an account. To complete the verification
-          process, please click the button below:
+          Your password has been updated successfully.
         </p>
-
-        <a
-          href="${verificationLink}"
-          type="button"
-          style="display: inline-block; padding: 10px 20px; font-size: 16px; text-decoration: none; background-color: #87CEEB; color: #fff; border-radius: 5px;"
-        >
-          Verify Account
-        </a>
-
+        
         <p style="color: #666;">
-          If you did not create an account, please ignore this email.
+          If you did not update your password, please reset your password.
         </p>
-      </div>
-      `;
+  `;
 };
 
-const passwordUpdateNotificationMail = async (
-  subject,
-  recipient_name,
-  recipient_email,
-  verifyToken
-) => {
-  const description = template(verifyToken);
-  // console.log(description);
-
-  try {
-    const result = await MailSender(
-      subject,
-      description,
-      recipient_name,
-      recipient_email
-    );
-    return result;
-  } catch (error) {
-    // console.log(error);
-    return error;
-  }
+const passwordUpdateNotificationMail = (subject) => {
+  const body = template(subject);
+  //   console.log(body);
+  return body;
 };
 // passwordUpdateNotificationMail();
+
 module.exports = passwordUpdateNotificationMail;

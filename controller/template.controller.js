@@ -13,7 +13,7 @@ module.exports.template = catchAsync(async (req, res) => {
   const navigation = require(`../utils/navigationBar`);
   const Nav = navigation(templateName);
 
-  res.send(Nav + mail);
+  res.send(mail + Nav);
 
   // sandResponse(res, {
   //   success: true,
@@ -28,11 +28,12 @@ module.exports.template = catchAsync(async (req, res) => {
 
 module.exports.sendMail = catchAsync(async (req, res) => {
   const templateName = req.query.type;
+  const name = req.body.name;
   const subject = req.body.subject;
   const mailTo = req.body.email;
   const file = require(`../templates/container/container`);
-  const mail = await file(templateName, subject);
-  const sendMail = await mailSender(mailTo, subject, mail);
+  const mail = await file(templateName, name, subject);
+  const sendMail = await mailSender(name, mailTo, subject, mail);
   // console.log(mailTo, subject, templateName);
   res.send(sendMail);
 });

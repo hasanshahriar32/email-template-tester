@@ -1,14 +1,16 @@
-const MailSender = require("../../mailSender");
-
-const template = (verifyToken) => {
+const template = (name, subject) => {
+  name = name || "User";
+  subject = subject || "Welcome to Paradox Tech BD";
+  const recipient_name = "User";
+  const verifyToken = 123456;
   const verificationLink = `${process.env.FrontendUrl}/onboarding?secret=${verifyToken}`;
   return `
-      <div style="max-width: 600px; margin: 20px auto; background-color: #ffffff;">
+        <h1 style="color: #0F6CBD;">${subject}</h1>
+        <p>Dear ${recipient_name},</p>
         <p style="color: #666; margin-bottom: 20px;">
           Thank you for creating an account. To complete the verification
           process, please click the button below:
         </p>
-
         <a
           href="${verificationLink}"
           type="button"
@@ -20,32 +22,14 @@ const template = (verifyToken) => {
         <p style="color: #666;">
           If you did not create an account, please ignore this email.
         </p>
-      </div>
-      `;
+  `;
 };
-// template ends here
 
-const registerUserMail = async (
-  recipient_name,
-  recipient_email,
-  verifyToken
-) => {
-  const subject = "Onboarding to Restaurant Website: Verify your account.";
-  const description = template(verifyToken);
-  // console.log(description);
-
-  try {
-    const result = await MailSender(
-      subject,
-      description,
-      recipient_name,
-      recipient_email
-    );
-    return result;
-  } catch (error) {
-    // console.log(error);
-    return error;
-  }
+const registerUserMail = (subject) => {
+  const body = template(subject);
+  //   console.log(body);
+  return body;
 };
 // registerUserMail();
+
 module.exports = registerUserMail;
