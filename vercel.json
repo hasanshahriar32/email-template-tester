@@ -3,8 +3,7 @@
   "builds": [
     {
       "src": "server.js",
-      "use": "@vercel/node",
-      "command": "postcss styles.css -o public/styles.css && node server.js"
+      "use": "@vercel/node"
     }
   ],
   "routes": [
