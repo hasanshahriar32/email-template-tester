@@ -1,4 +1,4 @@
-const template = (req, templateName) => {
+const template = () => {
   const Urls = [];
   Urls.push("/compose/ai?type=ai");
   Urls.push("/compose/manual?type=manual");
@@ -34,8 +34,8 @@ const template = (req, templateName) => {
   `;
 };
 
-const compose = (req, templateName) => {
-  const compose = template(req, templateName);
+const compose = () => {
+  const compose = template();
   // console.log(compose);
   return compose;
 };
