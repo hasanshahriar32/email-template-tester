@@ -25,8 +25,8 @@ const template = (name, subject) => {
   `;
 };
 
-const resetPasswordMail = (subject) => {
-  const body = template(subject);
+const resetPasswordMail = (name, subject) => {
+  const body = template(name, subject);
   //   console.log(body);
   return body;
 };

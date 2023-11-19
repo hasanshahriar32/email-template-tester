@@ -25,8 +25,8 @@ const template = (name, subject) => {
   `;
 };
 
-const updatePasswordMail = (subject) => {
-  const body = template(subject);
+const updatePasswordMail = (name, subject) => {
+  const body = template(name, subject);
   //   console.log(body);
   return body;
 };

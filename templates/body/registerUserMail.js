@@ -25,8 +25,8 @@ const template = (name, subject) => {
   `;
 };
 
-const registerUserMail = (subject) => {
-  const body = template(subject);
+const registerUserMail = (name, subject) => {
+  const body = template(name, subject);
   //   console.log(body);
   return body;
 };

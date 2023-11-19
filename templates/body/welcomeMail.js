@@ -1,6 +1,6 @@
-const template = (subject) => {
+const template = (name, subject) => {
   subject = subject || "Welcome to Paradox Tech BD";
-  const recipient_name = "User";
+  const recipient_name = name || "User";
   return `
         <h1 style="color: #0F6CBD;">${subject}</h1>
         <p>Dear ${recipient_name},</p>
@@ -8,8 +8,8 @@ const template = (subject) => {
   `;
 };
 
-const welcomeMail = (subject) => {
-  const body = template(subject);
+const welcomeMail = (name, subject) => {
+  const body = template(name, subject);
   //   console.log(body);
   return body;
 };

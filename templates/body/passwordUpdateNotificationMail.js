@@ -17,8 +17,8 @@ const template = (name, subject) => {
   `;
 };
 
-const passwordUpdateNotificationMail = (subject) => {
-  const body = template(subject);
+const passwordUpdateNotificationMail = (name, subject) => {
+  const body = template(name, subject);
   //   console.log(body);
   return body;
 };
