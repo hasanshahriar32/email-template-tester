@@ -14,6 +14,9 @@ app.use(express.json());
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// Serve static files (styles.css and favicon.ico)
+app.use("/public", express.static(path.join(__dirname, "public")));
+
 // Dynamically generate and serve Tailwind CSS styles
 app.use(
   "/public/styles.css",
@@ -58,8 +61,8 @@ app.get("/", (req, res) => {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/public/styles.css">
     <title>Nodejs Email template Tester</title>
-    <link rel="shortcut icon" href="/public/icons/favicon.png" type="image/x-icon">
-    <link rel="icon" href="/public/icons/favicon.png" type="image/x-icon">
+    <link rel="icon" href="/public/icons/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="/public/icons/favicon.ico" type="image/x-icon" />
   </head>
   <body class="font-sans bg-gradient-to-r from-blue-900 to-indigo-800 text-white min-h-screen flex items-center justify-center">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -76,7 +79,7 @@ app.get("/", (req, res) => {
 app.use("/", routes);
 
 // error handler middleware
-app.use(globalErrorHandler);
 app.use(noRouteFound);
+app.use(globalErrorHandler);
 
 module.exports = app;
