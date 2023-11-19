@@ -33,12 +33,12 @@ app.get("/", (req, res) => {
   const files = fs.readdirSync(folder);
 
   files.forEach((file) => {
-    Urls.push(`/template?type=${file}`);
+    Urls?.push(`/template?type=${file}`);
   });
 
-  Urls.push("/compose?type=compose");
+  Urls?.push("/compose?type=compose");
 
-  const modifiedUrlsHtml = Urls.map((url) => {
+  const modifiedUrlsHtml = Urls?.map((url) => {
     return `
     <a href="${url}" class="transition-transform transform hover:scale-105">
       <div class="max-w-xs bg-gradient-to-r from-pink-500 to-purple-500 text-white rounded-lg overflow-hidden shadow-lg m-4">
@@ -63,7 +63,7 @@ app.get("/", (req, res) => {
   </head>
   <body class="font-sans bg-gradient-to-r from-blue-900 to-indigo-800 text-white min-h-screen flex items-center justify-center">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      ${modifiedUrlsHtml.join("")}
+      ${modifiedUrlsHtml?.join("")}
     </div>
   </body>
   </html>

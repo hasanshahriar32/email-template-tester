@@ -21,7 +21,10 @@ const template = (req, templateName) => {
         </form>
 
 
-        <a href="/">Back to home</a>
+        <div>
+          <a href="/">Home</a>  
+          <a href="/compose">Compose</a>  
+        </div>
 
         </div>
  
