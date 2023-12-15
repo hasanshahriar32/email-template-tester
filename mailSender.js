@@ -35,7 +35,7 @@ async function mailSender(name, mailTo, subject, mail) {
     `<p>We are delighted to have you as a part of Paradox BD. Our team is dedicated to providing high-quality software solutions tailored to meet your needs.</p>`;
 
   recipient_email = mailTo || [
-    "bangladeshisoft@outlook.com",
+    // "bangladeshisoft@outlook.com",
     "paradoxtechbd@outlook.com",
     // 'admin@bangladeshisoftware.com',
   ];

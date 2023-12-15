@@ -4,6 +4,6 @@ const route = express.Router();
 
 route.get("/", composeController.compose);
 route.get("/ai", composeController.ai);
-route.get("/manual", composeController.ai);
+route.get("/manual", composeController.manual);
 
 module.exports = route;
